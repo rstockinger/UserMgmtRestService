@@ -17,7 +17,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.Arrays;
 
-import static com.jayway.restassured.RestAssured.given;
 import static com.jayway.restassured.RestAssured.when;
 
 /**
