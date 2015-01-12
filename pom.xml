@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.1.9.RELEASE</version>
+        <version>1.2.1.RELEASE</version>
     </parent>
 
 
@@ -26,6 +26,14 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.3.2</version>
+        </dependency>
+
+        <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-rest</artifactId>
@@ -40,8 +48,8 @@
             <version>${spring-version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- Rest Assured  -->
 
+        <!-- Rest Assured  -->
         <dependency>
             <groupId>com.jayway.restassured</groupId>
             <artifactId>rest-assured</artifactId>
@@ -70,6 +78,21 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Swagger -->
+
+        <dependency>
+            <groupId>com.mangofactory</groupId>
+            <artifactId>swagger-springmvc</artifactId>
+            <version>0.9.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.ajar</groupId>
+            <artifactId>swagger-spring-mvc-ui</artifactId>
+            <version>0.2</version>
+        </dependency>
+
+        <!-- DB -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>

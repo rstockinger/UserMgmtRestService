@@ -1,9 +1,6 @@
 package at.reinisoft.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by stocki on 04.01.15.
@@ -18,6 +15,24 @@ public class Address {
     private String street;
     private Integer number;
     private Integer postcode;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    private String country;
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
     public String getStreet() {
         return street;
@@ -42,4 +57,5 @@ public class Address {
     public void setPostcode(Integer postcode) {
         this.postcode = postcode;
     }
+
 }

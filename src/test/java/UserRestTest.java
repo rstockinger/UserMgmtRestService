@@ -1,6 +1,8 @@
 import at.reinisoft.Application;
+import at.reinisoft.domain.Address;
 import at.reinisoft.domain.Title;
-import at.reinisoft.domain.User;
+import at.reinisoft.domain.UserLite;
+import at.reinisoft.repository.UserLiteRepository;
 import at.reinisoft.repository.UserRepository;
 import com.jayway.restassured.RestAssured;
 import org.apache.http.HttpStatus;
@@ -17,7 +19,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.Arrays;
 
+
 import static com.jayway.restassured.RestAssured.when;
+
 
 /**
  * Created by stocki on 04.01.15.
@@ -29,11 +33,15 @@ import static com.jayway.restassured.RestAssured.when;
 public class UserRestTest {
 
     @Autowired
-    UserRepository repository;
+    UserLiteRepository repository;
 
-    User mickey = new User();
-    User minnie = new User();
-    User pluto = new User();
+    UserLite mickey = new UserLite();
+    UserLite minnie = new UserLite();
+    UserLite pluto = new UserLite();
+
+    Address addressOne = new Address();
+    Address addressTwo = new Address();
+    Address addressthree = new Address();
 
 
     @Value("${local.server.port}")
@@ -42,9 +50,29 @@ public class UserRestTest {
     @Before
     public void setUp() {
         // 7
+        addressOne.setStreet("Hasendorferstrasse");
+        addressOne.setNumber(41);
+        addressOne.setPostcode(8043);
+        addressOne.setCountry("Leibnitz");
+
+
+        addressTwo.setStreet("Franzsteinergasse");
+        addressTwo.setNumber(17);
+        addressTwo.setPostcode(8020);
+        addressTwo.setCountry("Graz");
+
         mickey.setLastName("Mickey Mouse");
+        mickey.setTitle(Title.DI);
+        mickey.setUserAddress(addressTwo);
+
         minnie.setLastName("Minnie Mouse");
+        minnie.setTitle(Title.MAG);
+        minnie .setUserAddress(addressOne);
+
+
         pluto.setLastName("Pluto");
+        pluto.setTitle(Title.ING);
+        pluto.setUserAddress(addressthree);
 
         // 8
         repository.deleteAll();
@@ -58,32 +86,38 @@ public class UserRestTest {
     public void canFetchMickey() {
         Long mickeyId = mickey.getId();
 
-        when().get("/user/{id}", mickeyId).prettyPrint();
+        when().get("/userLite/{id}", mickeyId).prettyPrint();
+        when().get("/userLite/{id}/userAddress", mickeyId).prettyPrint();
+        when().get("/userLite/{id}/shippingAddresses", mickeyId).prettyPrint();
 
         when().
-                get("/user/{id}", mickeyId).
+                get("/userLite/{id}", mickeyId).
         then().
                 statusCode(HttpStatus.SC_OK).
                 body("lastName", Matchers.is("Mickey Mouse"));
-                // body("id", Matchers.is(mickeyId));
     }
 
-    /*@Test
+     @Test
     public void canFetchAll() {
+
+        when().get("/userLite").prettyPrint();
+
         when().
-                get("/characters").
-                then().
+                get("/userLite").
+        then().
                 statusCode(HttpStatus.SC_OK).
-                body("name", Matchers.hasItems("Mickey Mouse", "Minnie Mouse", "Pluto"));
+                body("_embedded.userLite.lastName", Matchers.hasItems("Mickey Mouse", "Minnie Mouse", "Pluto"));
     }
 
     @Test
     public void canDeletePluto() {
-        Integer plutoId = pluto.getId();
+        Long plutoId = pluto.getId();
 
         when()
-                .delete("/characters/{id}", plutoId).
-                then().
+                .delete("/userLite/{id}", plutoId).
+        then().
                 statusCode(HttpStatus.SC_NO_CONTENT);
-    }*/
+
+        when().get("/userLite").prettyPrint();
+    }
 }
