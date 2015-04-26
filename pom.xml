@@ -12,7 +12,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.2.1.RELEASE</version>
+        <version>1.1.10.RELEASE</version>
     </parent>
 
 
@@ -78,9 +78,9 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Swagger -->
+        <!--
 
-        <dependency>
+       <dependency>
             <groupId>com.mangofactory</groupId>
             <artifactId>swagger-springmvc</artifactId>
             <version>0.9.4</version>
@@ -90,6 +90,14 @@
             <groupId>org.ajar</groupId>
             <artifactId>swagger-spring-mvc-ui</artifactId>
             <version>0.2</version>
+        </dependency>  Swagger -->
+
+        <!-- CVS Import -->
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.0</version>
         </dependency>
 
         <!-- DB -->

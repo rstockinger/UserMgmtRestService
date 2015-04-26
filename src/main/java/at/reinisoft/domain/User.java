@@ -34,6 +34,10 @@ public class User extends AbstractEntity {
 
     private Set<UserRole> userRoles = new HashSet<UserRole>();
 
+
+    @Enumerated(EnumType.STRING)
+    private Title title;
+
     @NotBlank
     @Length(max = MAX_USERNAME_LENGTH)
     private String username;
@@ -110,6 +114,29 @@ public class User extends AbstractEntity {
      */
     public void setAuthenticationType(final AuthenticationType authenticationType) {
         this.authenticationType = authenticationType;
+    }
+
+    @OneToOne @MapsId
+    private Address userAddress;
+
+    public Address getUserAddress() {
+        return userAddress;
+    }
+
+    public void setUserAddress(Address userAddress) {
+        this.userAddress = userAddress;
+    }
+
+    @OneToOne @MapsId
+    private Address shippingAddresses;
+
+
+    public Address getShippingAddresses() {
+        return shippingAddresses;
+    }
+
+    public void setShippingAddresses(Address shippingAddresses) {
+        this.shippingAddresses = shippingAddresses;
     }
 
     /**
@@ -283,5 +310,13 @@ public class User extends AbstractEntity {
                 .append(" ")//
                 .append(this.lastname)//
                 .toString();
+    }
+
+    public Title getTitle() {
+        return title;
+    }
+
+    public void setTitle(Title title) {
+        this.title = title;
     }
 }

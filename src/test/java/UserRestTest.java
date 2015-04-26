@@ -3,7 +3,6 @@ import at.reinisoft.domain.Address;
 import at.reinisoft.domain.Title;
 import at.reinisoft.domain.UserLite;
 import at.reinisoft.repository.UserLiteRepository;
-import at.reinisoft.repository.UserRepository;
 import com.jayway.restassured.RestAssured;
 import org.apache.http.HttpStatus;
 import org.hamcrest.Matchers;
@@ -51,14 +50,14 @@ public class UserRestTest {
     public void setUp() {
         // 7
         addressOne.setStreet("Hasendorferstrasse");
-        addressOne.setNumber(41);
-        addressOne.setPostcode(8043);
+        addressOne.setStreetNumber(41);
+        addressOne.setPostcode("8043");
         addressOne.setCountry("Leibnitz");
 
 
         addressTwo.setStreet("Franzsteinergasse");
-        addressTwo.setNumber(17);
-        addressTwo.setPostcode(8020);
+        addressTwo.setStreetNumber(17);
+        addressTwo.setPostcode("8020");
         addressTwo.setCountry("Graz");
 
         mickey.setLastName("Mickey Mouse");

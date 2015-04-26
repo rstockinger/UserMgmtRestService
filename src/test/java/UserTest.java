@@ -14,10 +14,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static com.jayway.restassured.RestAssured.when;
 
@@ -45,6 +42,7 @@ public class UserTest {
     HashSet<UserRole> userRoleHashSet = new HashSet<UserRole>();
 
     LastChange lastChange = new LastChange();
+
 
     @Value("${local.server.port}")
             int port;
@@ -84,7 +82,8 @@ public class UserTest {
 
         // 8
         repository.deleteAll();
-        repository.save(Arrays.asList(mickey, minnie, pluto));
+        repository.save(Arrays.asList(mickey,minnie,pluto));
+        // repository.save(generateLongUserList(userRoleHashSet,lastChange));
 
         // 9
         RestAssured.port = port;
@@ -105,6 +104,25 @@ public class UserTest {
         then().
                 statusCode(HttpStatus.SC_OK).
                 body("lastname", Matchers.is("Mickey Mouse"));
+    }
+
+
+    private List<User> generateLongUserList(HashSet<UserRole> userRoles, LastChange lastChange) {
+
+        User tempUser = new User();
+        List<User> longUserList = new ArrayList<User>();
+
+        tempUser.setLastname("Mickey Mouse");
+        tempUser.setUsername("miMouse");
+        tempUser.setLastChange(lastChange);
+        tempUser.setUserRoles(userRoles);
+
+
+        for (int i = 0; i < 100; i++) {
+            longUserList.add(tempUser);
+        }
+
+        return longUserList;
     }
 
 }

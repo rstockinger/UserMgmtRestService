@@ -15,4 +15,6 @@ public interface AddressRepository extends PagingAndSortingRepository <Address, 
 
     List<Address> findByStreet(@Param("street") String street);
 
+    List<Address> findByCity(@Param("city") String city);
+
 }
