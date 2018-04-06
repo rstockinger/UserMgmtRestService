@@ -12,7 +12,7 @@ import java.util.List;
  * Created by stocki on 04.01.15.
  */
 @RepositoryRestResource(collectionResourceRel = "userLite", path = "userLite")
-public interface UserLiteRepository extends PagingAndSortingRepository<UserLite,Long>{
+public abstract class UserLiteRepository implements PagingAndSortingRepository<UserLite,Long> {
 
-    List<UserLite> findByLastName(@Param("name") String name);
+    public abstract List<UserLite> findByLastName(@Param("name") String name);
 }

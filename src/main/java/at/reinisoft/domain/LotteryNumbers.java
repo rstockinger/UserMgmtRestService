@@ -24,6 +24,17 @@ public class LotteryNumbers extends AbstractEntity {
     public LotteryNumbers() {
     }
 
+    public LotteryNumbers(String[] fields) {
+        this.numberOne = fields[0];
+        this.numberTwo = fields[1];
+        this.numberThree = fields[2];
+        this.numberFour = fields[3];
+        this.numberFive = fields[4];
+        this.numberSix = fields[5];
+        this.numberExtra = fields[6];
+        this.drawDate = fields[7];
+    }
+
     public LotteryNumbers(String numberOne, String numberTwo, String numberThree, String numberFour, String numberFive, String numberSix, String numberExtra, String drawDate) {
         this.numberOne = numberOne;
         this.numberTwo = numberTwo;

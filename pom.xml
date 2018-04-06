@@ -100,6 +100,12 @@
             <version>1.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>3.8</version>
+        </dependency>
+
         <!-- DB -->
         <dependency>
             <groupId>com.h2database</groupId>
